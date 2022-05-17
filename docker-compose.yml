@@ -16,7 +16,7 @@ services:
         target: /app/CREDENTIALS_FILE
 
       # Data
-      - ./data:/app/data
+      - ./data/download:/app/data
     
     # Map ports from host to container
     ports:
@@ -37,8 +37,10 @@ services:
         target: /app/CREDENTIALS_FILE
 
       # Data
-      - ./data:/app/data
-      - /tmp/mnt:/tmp/mnt
+      - ./data/fuse:/app/data
+      - ./data/mnt:/tmp/mnt
+
+    privileged: true
        
 
   

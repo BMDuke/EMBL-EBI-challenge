@@ -19,3 +19,5 @@ RUN mkdir /tmp/mnt
 #### Add commands to extract version from target/ rather than hardcode 
 # RUN echo 'alias fuse=$"./fuseclient.sh start \"--cf=test_credentials.txt\""' >> ~/.bashrc
 RUN echo 'alias fuse_start="java -jar target/ega-fuse-client-2.1.1-SNAPSHOT.jar --cf=test_credentials.txt --m=/tmp/mnt --cache=1000 --c=4 --cpf=4"' >> ~/.bashrc
+
+# CMD ["java", "-jar",  "target/ega-fuse-client-2.1.1-SNAPSHOT.jar", "--cf=test_credentials.txt"]

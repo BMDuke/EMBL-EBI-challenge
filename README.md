@@ -53,3 +53,4 @@ pyega3 -c 30 fetch EGAF00001753755 --output-dir ./data
 # Running the FUSE client
 
 ## Checking out the help options
+sudo docker-compose up ega_fuse -d
