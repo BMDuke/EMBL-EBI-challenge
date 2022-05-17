@@ -1,0 +1,44 @@
+version: "3.2"
+
+services:
+
+  # Project image
+  ega_download:
+    image: download_client:latest
+
+    # Copy the credentials file to the container & 
+    # add volume to persist data
+    volumes:
+
+      # Credentials
+      - type: bind
+        source: ./CREDENTIALS_FILE
+        target: /app/CREDENTIALS_FILE
+
+      # Data
+      - ./data:/app/data
+    
+    # Map ports from host to container
+    ports:
+      - 8442:8443
+      - 8052:8052
+
+  # Project image
+  ega_fuse:
+    image: fuse_client:latest
+
+    # Copy the credentials file to the container & 
+    # add volume to persist data
+    volumes:
+    
+      # Credentials
+      - type: bind
+        source: ./CREDENTIALS_FILE
+        target: /app/CREDENTIALS_FILE
+
+      # Data
+      - ./data:/app/data
+      - /tmp/mnt:/tmp/mnt
+       
+
+  
