@@ -12,11 +12,11 @@ services:
 
       # Credentials
       - type: bind
-        source: ./CREDENTIALS_FILE
+        source: ./config_credentials
         target: /app/CREDENTIALS_FILE
 
       # Data
-      - ./data/download:/app/data
+      - ./data/download:/app/data  
     
     # Map ports from host to container
     ports:
@@ -30,17 +30,22 @@ services:
     # Copy the credentials file to the container & 
     # add volume to persist data
     volumes:
-    
-      # Credentials
-      - type: bind
-        source: ./CREDENTIALS_FILE
-        target: /app/CREDENTIALS_FILE
 
       # Data
       - ./data/fuse:/app/data
-      - ./data/mnt:/tmp/mnt
+      - /tmp/mnt:/tmp/mnt
+
+    environment:   
+      - CACHE=${CACHE}
+      - C=${C}
+      - CF=${CF}
+      - CPF=${CPF}
+      - T=${T}
+      - TARGET=${TARGET}
+
+    network_mode: host
 
     privileged: true
-       
-
-  
+    cap_add:
+        - SYS_ADMIN    
+        
